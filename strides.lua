@@ -10,7 +10,7 @@
 -- requires a grid.
 --
 -- load samples and set
--- cc numbers via the
+-- cc destinations via the
 -- parameters menu.
 -- ----------
 --
@@ -201,20 +201,6 @@ local function draw_record()
   screen.stroke()
 end
 
-
-local function draw_stop()
-  -- stop icon
-  screen.move(40, 2)
-  screen.rect(40, 2, 10, 10)
-  if enc_pattern[cc_page].play == 0 then
-    screen.level(10)
-  else
-    screen.level(2)
-  end
-  screen.fill()
-  screen.stroke()
-end
-
 -- helper functions for grid --
 
 local function get_grid_pat()
@@ -374,9 +360,7 @@ local function enc_process(e)
   if enc_pattern[e.id].step == 1 then
     cc_val[e.id] = s_cc_val[cc_page]
   end
-  for i = 1, 8 do
-    m.cc(i, cc_val[i], params:get("midi_chan"))
-  end
+  m.cc(e.id, cc_val[e.id], params:get("midi_chan"))
 end
 
 
