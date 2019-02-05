@@ -1,6 +1,6 @@
 
 
-# strides v1.2
+# strides v1.3
 
 ---
 
