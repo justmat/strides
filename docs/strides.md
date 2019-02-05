@@ -43,6 +43,7 @@ nb: delay send works on all samples and tracks. if you wish to send individual s
 - enc1 = select active pattern
 - enc2 = set cc value
 
+nb: set your cc destinations and midi output channels in the PARAMETERS menu.
 
 ---
 
