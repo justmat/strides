@@ -1,2 +1,4 @@
 # strides
-strides is a finger drum style pattern recorder for monomes norns
+---
+
+strides is a collection of pattern recorders for [norns](https://monome.org).
