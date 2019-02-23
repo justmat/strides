@@ -17,7 +17,7 @@ strides is a collection of 16 pattern recorders.
 load samples, set midi notes and cc destinations in the PARAMETERS menu.
 
 
-there are two operating modes in strides, grid and encoder.
+there are two operating modes in strides, **grid** and **encoder**.
 to switch modes, hold **key1** and press **key3**.
 
 
