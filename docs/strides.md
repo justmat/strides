@@ -30,7 +30,6 @@ to switch between grid and encoder modes, hold key1 and press key3.
 	* enc1 = distortion amount
 	* enc2 = delay level
 	* enc3 = delay send
-	* key3 = change mode
 - key2 = half time
 - key3 = double time
 
