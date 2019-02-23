@@ -18,7 +18,7 @@ load samples, set midi notes and cc destinations in the PARAMETERS menu.
 
 
 there are two operating modes in strides, grid and encoder.
-to switch between grid and encoder modes, hold key1 and press key3.
+to switch modes, hold **key1** and press **key3**.
 
 
 #### grid mode controls
