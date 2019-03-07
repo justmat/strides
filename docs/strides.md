@@ -17,8 +17,8 @@ strides is a collection of 16 pattern recorders.
 load samples, set midi notes and cc destinations in the PARAMETERS menu.
 
 
-there are two operating modes in strides, grid and encoder.
-to switch between grid and encoder modes, hold key1 and press key3.
+there are two operating modes in strides, **grid** and **encoder**.
+to switch modes, hold **key1** and press **key3**.
 
 
 #### grid mode controls
@@ -30,7 +30,6 @@ to switch between grid and encoder modes, hold key1 and press key3.
 	* enc1 = distortion amount
 	* enc2 = delay level
 	* enc3 = delay send
-	* key3 = change mode
 - key2 = half time
 - key3 = double time
 
