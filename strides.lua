@@ -93,11 +93,11 @@
 --
 -- ----------
 --
--- v1.3 by @justmat
+-- v1.4 by @justmat
 
 engine.name = "Ack"
 
-local ack = require 'jah/ack'
+local ack = require 'ack'
 local pattern_time = require 'pattern_time'
 
 local g = grid.connect(1)
@@ -226,7 +226,7 @@ local function clear_all_grid_pat()
   for i = 1, 8 do
     grid_pattern[i]:clear()
     is_linearized[i] = 0
-    m.note_off(params:get(i..":_midi_note"))
+    m:note_off(params:get(i..":_midi_note"))
   end
   current_g_pat = 1
   lit = {}
@@ -243,7 +243,7 @@ end
 
 local function kill_midi()
   for i = 1, 127 do
-    m.note_off(i, 100, params:get("midi_chan"))
+    m:note_off(i, 100, params:get("midi_chan"))
   end
 end
 
@@ -390,7 +390,7 @@ local function trig(e)
       set_playback_speed()
       speed_changed = false
     end
-    -- trig ack
+    -- trig ack, and send note on
     if params:get("send") == 1 or params:get("send") == 2 then
       if e.y == 5 then
         engine.trig(e.x - 3)
@@ -398,21 +398,21 @@ local function trig(e)
         engine.trig(e.x + 1)
       end
     end
-    -- midi note on
+
     if params:get("send") == 2 or params:get("send") == 3 then
       if e.y == 5 then
-        m.note_on(params:get(e.x - 2 .. ":_midi_note"), 100, params:get("midi_chan"))
+        m:note_on(params:get(e.x - 2 .. ":_midi_note"), 100, params:get("midi_chan"))
       elseif e.y == 6 then
-        m.note_on(params:get(e.x + 2 .. ":_midi_note"), 100, params:get("midi_chan"))
+        m:note_on(params:get(e.x + 2 .. ":_midi_note"), 100, params:get("midi_chan"))
       end
     end
   else
-    -- midi note off
+    -- note off
     if params:get("send") == 2 or params:get("send") == 3 then
       if e.y == 5 then
-        m.note_off(params:get(e.x - 2 .. ":_midi_note"), 100, params:get("midi_chan"))
+        m:note_off(params:get(e.x - 2 .. ":_midi_note"), 100, params:get("midi_chan"))
       elseif e.y == 6 then
-        m.note_off(params:get(e.x + 2 .. ":_midi_note"), 100, params:get("midi_chan"))
+        m:note_off(params:get(e.x + 2 .. ":_midi_note"), 100, params:get("midi_chan"))
       end
     end
   end
@@ -459,7 +459,7 @@ function init()
   ack.add_effects_params()
   params:add_separator()
   -- screen refresh metro
-  local screen_m = metro.alloc(function(stage) redraw() end, 1 / 15)
+  local screen_m = metro.init(function(stage) redraw() end, 1 / 15)
   screen_m:start()
   -- load the default paramset
   params:read("justmat/strides.pset")
@@ -577,7 +577,7 @@ function enc(n, d)
 end
 
 
-function g.event(x, y, state)
+function g.key(x, y, state)
   if y == 3 and x == 3 then
     -- rec button. clears selected track/grid_pattern.
     -- alt_g + rec clears all patterns.
@@ -680,68 +680,68 @@ end
 
 
 function gridredraw()
-  g.all(0)
+  g:all(0)
   -- rec button.
   if get_grid_pat().rec == 1 then
-    g.led(3, 3, 10)
+    g:led(3, 3, 10)
   elseif get_grid_pat().count > 0 then
-    g.led(3, 3, 6)
+    g:led(3, 3, 6)
   else
-    g.led(3, 3, 3)
+    g:led(3, 3, 3)
   end
   -- start/stop button
   if get_grid_pat().play == 1 then
-    g.led(4, 3, 6)
+    g:led(4, 3, 6)
   else
-    g.led(4, 3, 3)
+    g:led(4, 3, 3)
   end
   -- alt_g
   if alt_g == 1 then
-    g.led(6, 3, 6)
+    g:led(6, 3, 6)
   else
-    g.led(6, 3, 3)
+    g:led(6, 3, 3)
   end
   -- tracks
   for i = 1, 8 do
     if current_g_pat == i then
-      g.led(1, i, 10)
+      g:led(1, i, 10)
     elseif grid_pattern[i].count > 0 then
-      g.led(1, i, 6)
+      g:led(1, i, 6)
     else
-      g.led(1, i, 3)
+      g:led(1, i, 3)
     end
   end
   -- drum pads
   for i = 3, 6 do
-    g.led(i, 5, 4)
-    g.led(i, 6, 4)
+    g:led(i, 5, 4)
+    g:led(i, 6, 4)
   end
   for i, e in pairs(lit) do
     if e.state == 1 then
-      g.led(e.x, e.y, 10)
+      g:led(e.x, e.y, 10)
     else
-      g.led(e.x, e.y, 4)
+      g:led(e.x, e.y, 4)
     end
   end
 
   if alt_g == 1 then
     -- kill midi
-    g.led(6, 2, 2)
+    g:led(6, 2, 2)
     -- grid_pattern linearize buttons
     for i = 1, 8 do
       if is_linearized[i] == 1 then
-        g.led(9, i, 8)
+        g:led(9, i, 8)
       else
-        g.led(9, i, 4)
+        g:led(9, i, 4)
       end
     end
     -- time/ playback speed controls
-    g.led(13, 3, 4)
-    g.led(12, 4, 4)
-    g.led(14, 4, 4)
-    g.led(13, 5, 4)
-    g.led(11, 6, 4)
-    g.led(15, 6, 4)
+    g:led(13, 3, 4)
+    g:led(12, 4, 4)
+    g:led(14, 4, 4)
+    g:led(13, 5, 4)
+    g:led(11, 6, 4)
+    g:led(15, 6, 4)
   end
   g:refresh()
 end
