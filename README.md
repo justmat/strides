@@ -48,7 +48,7 @@ nb: set your cc destinations and midi output channels in the PARAMETERS menu.
 
 ## grid
 
-![](strides-grid1.png)
+![](docs/strides-grid1.png)
 
 hold alt to access secondary grid functions.
 
@@ -67,7 +67,7 @@ nb: as of v1.2 a midi panic/ kill button was added just above alt. hold alt to e
 
 as well as secondary controls, holding alt will bring up several controls for pattern and playback speed manipulation.
 
-![](strides-grid2.png)
+![](docs/strides-grid2.png)
 
 - f - toggle pattern linearization
 - g - double sample playback speed
