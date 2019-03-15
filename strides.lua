@@ -462,7 +462,7 @@ function init()
   local screen_m = metro.init(function(stage) redraw() end, 1 / 15)
   screen_m:start()
   -- load the default paramset
-  params:read("justmat/strides.pset")
+  params:read()
   params:bang()
   -- draw grid
   if g then
