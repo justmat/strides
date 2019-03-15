@@ -97,8 +97,8 @@
 
 engine.name = "Ack"
 
-local ack = require 'ack'
-local pattern_time = require 'pattern_time'
+local ack = require 'we/lib/ack'
+local pattern_time = require 'we/lib/pattern_time'
 
 local g = grid.connect(1)
 local m = midi.connect(1)
