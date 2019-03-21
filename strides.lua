@@ -100,8 +100,8 @@ engine.name = "Ack"
 local ack = require 'we/lib/ack'
 local pattern_time = require 'pattern_time'
 
-local g = grid.connect(1)
-local m = midi.connect(1)
+local g = grid.connect()
+local m = midi.connect()
 
 local current_g_pat = 1
 local sample_playback_speed = 1
@@ -425,7 +425,7 @@ local function enc_process(e)
   if enc_pattern[e.id].step == 1 then
     cc_val[e.id] = s_cc_val[cc_page]
   end
-  m.cc(e.id, cc_val[e.id], params:get("midi_chan"))
+  m:cc(e.id, cc_val[e.id], params:get("midi_chan"))
 end
 
 
