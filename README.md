@@ -40,7 +40,7 @@ nb: delay send works on all samples and tracks. if you wish to send individual s
 - key2 = arm record
 - key3 = start/ stop pattern
 - enc1 = select active pattern
-- enc2 = set cc value
+- enc2 = turn to begin recording and/or set cc value
 
 nb: set your cc destinations and midi output channels in the PARAMETERS menu.
 
