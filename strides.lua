@@ -97,7 +97,7 @@
 
 engine.name = "Ack"
 
-local ack = require 'we/lib/ack'
+local ack = require 'ack/lib/ack'
 local pattern_time = require 'pattern_time'
 
 local g = grid.connect()
