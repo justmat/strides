@@ -94,6 +94,8 @@
 -- ----------
 --
 -- v1.4 by @justmat
+--
+-- llllllll.co/t/21101
 
 engine.name = "Ack"
 
