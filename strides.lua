@@ -569,6 +569,7 @@ function enc(n, d)
         local enc_e = {}
         enc_e.id = cc_page
         enc_e.d = d
+        cc_val[enc_e.id] = util.clamp(cc_val[enc_e.id] + d, 0, 127)
         enc_pattern[cc_page]:watch(enc_e)
         enc_process(enc_e)
       end
