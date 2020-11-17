@@ -537,7 +537,7 @@ function enc(n, d)
           params:delta(i .. "_dist", d)
         end
       else
-        mix:delta("output", d)
+        params:delta("output_level", d)
       end
       last_enc = 1
       time_last_enc = util.time()
@@ -763,7 +763,7 @@ function redraw()
         if alt_k == 1 then
           screen.text_center("distortion : " .. string.format("%.2f", params:get("1_dist")))
         else
-          screen.text_center("vol : " .. string.format("%.2f", mix:get("output")))
+          screen.text_center("vol : " .. string.format("%.2f", params:get("output_level")))
         end
       end
 
